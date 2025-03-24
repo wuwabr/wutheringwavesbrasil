@@ -1,0 +1,486 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Titillium Web', sans-serif;
+    background-image: url('https://i.ibb.co/Cs1czft/139-Sem-Titulo-20240505015445.png');
+    background-position: center center;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    position: relative;
+    min-height: 100vh;
+}
+
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.menu-toggle i {
+    font-size: 24px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: rgba(20, 20, 35, 0.95);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-header h3 {
+    color: white;
+    font-family: 'Exo', sans-serif;
+    font-weight: bold;
+}
+
+.close-btn {
+    cursor: pointer;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    transform: scale(1.2);
+}
+
+.menu-items {
+    list-style: none;
+    padding: 20px 0;
+}
+
+.menu-items li {
+    padding: 15px 20px;
+    transition: all 0.3s ease;
+}
+
+.menu-items li:hover, .menu-items li.active {
+    background-color: rgba(114, 137, 218, 0.3);
+}
+
+.menu-items li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-items li a i {
+    margin-right: 10px;
+    width: 24px;
+    text-align: center;
+}
+
+.menu-items li.active a {
+    color: #7289DA;
+    font-weight: bold;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    display: none;
+    transition: all 0.3s ease;
+}
+
+/* Conteúdo Principal */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    z-index: 1;
+}
+
+/* Seção Hero */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 180px;
+    max-width: 80%;
+    transition: all 0.5s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.main-title {
+    font-family: 'Exo', sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.slogan {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Botão Discord */
+.discord-btn {
+    background-color: #7289DA;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.discord-btn:hover {
+    transform: scale(1.05);
+    background-color: #5a70c7;
+    box-shadow: 0 7px 12px rgba(0, 0, 0, 0.4);
+}
+
+.discord-btn i {
+    font-size: 1.4rem;
+}
+
+/* Seção Social */
+.social-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.social-section h2 {
+    font-family: 'Exo', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(114, 137, 218, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px) scale(1.1);
+    background-color: #7289DA;
+}
+
+/* Seção Sobre */
+.about-section {
+    padding: 40px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.about-section h2 {
+    font-family: 'Exo', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.about-section p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    margin-top: 40px;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+/* Página de Agradecimentos */
+.thanks-hero {
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+
+.thanks-title {
+    font-family: 'Exo', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.thanks-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.boosters-section {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.boosters-section h2 {
+    font-family: 'Exo', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.boosters-section p {
+    margin-bottom: 30px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.boosters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.booster-card {
+    background-color: rgba(114, 137, 218, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.booster-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(114, 137, 218, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.booster-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid #7289DA;
+    overflow: hidden; 
+    position: relative;
+    background-color: #36393f;
+}
+
+.booster-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+.booster-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #ffffff;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.booster-since {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.loader {
+    text-align: center;
+    padding: 30px;
+    font-size: 1.2rem;
+    grid-column: 1 / -1;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.no-boosters, .error {
+    text-align: center;
+    padding: 20px;
+    grid-column: 1 / -1;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.error {
+    color: #ff5555;
+}
+
+.join-community {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.join-community h2 {
+    font-family: 'Exo', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.join-community p {
+    margin-bottom: 30px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.2rem;
+    }
+    
+    .slogan {
+        font-size: 1.2rem;
+    }
+    
+    .social-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+    
+    .boosters-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .boosters-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    .booster-avatar {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .booster-name {
+        font-size: 0.9rem;
+    }
+    
+    .booster-since {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-toggle {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .menu-toggle i {
+        font-size: 20px;
+    }
+    
+    .main-title {
+        font-size: 1.8rem;
+    }
+    
+    .slogan {
+        font-size: 1rem;
+    }
+    
+    .discord-btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+    
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .about-section h2, .social-section h2, .boosters-section h2, .join-community h2 {
+        font-size: 1.5rem;
+    }
+}
