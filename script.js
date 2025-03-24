@@ -3,28 +3,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.querySelector('.sidebar');
     const closeBtn = document.getElementById('close-menu');
     const overlay = document.getElementById('overlay');
-
+    
     if (hamburger) {
         hamburger.addEventListener('click', function() {
             sidebar.classList.add('active');
             overlay.classList.add('active');
         });
     }
-
+    
     if (closeBtn) {
         closeBtn.addEventListener('click', function() {
             sidebar.classList.remove('active');
             overlay.classList.remove('active');
         });
     }
-
+    
     if (overlay) {
         overlay.addEventListener('click', function() {
             sidebar.classList.remove('active');
             overlay.classList.remove('active');
         });
     }
-
+    
     loadBoosters();
 });
 
@@ -37,11 +37,13 @@ function loadBoosters() {
     
     boostersContainer.innerHTML = '<div class="loader">Carregando boosters...</div>';
     
-    const apiUrl = 'http://localhost:5000/boosters';
+    // URL do arquivo de boosters no GitHub
+    const jsonUrl = 'https://raw.githubusercontent.com/wuwabr/wutheringwavesbrasil/main/data/boosters.json';
     
-    const urlWithNoCache = `${apiUrl}?_=${Date.now()}`;
+    // Adiciona um parâmetro para evitar cache
+    const urlWithNoCache = `${jsonUrl}?_=${Date.now()}`;
     
-    console.log('Tentando conectar à API em:', urlWithNoCache);
+    console.log('Tentando carregar dados de:', urlWithNoCache);
     
     fetch(urlWithNoCache)
         .then(response => {
@@ -54,7 +56,6 @@ function loadBoosters() {
         .then(data => {
             console.log('Dados recebidos:', data);
             
-            // ta bugando, ver dps. resolvido
             if (data && data.length > 0) {
                 boostersContainer.innerHTML = '';
                 
@@ -71,16 +72,20 @@ function loadBoosters() {
             boostersContainer.innerHTML = `
                 <div class="error">
                     <p>Não foi possível carregar os boosters: ${error.message}</p>
-                    <p>Verifique se o bot está online e se a URL da API está correta.</p>
+                    <p>Verifique se o arquivo de boosters existe no GitHub.</p>
+                    <p><button onclick="forceCreateBoostersFile()" class="retry-btn">Tentar criar arquivo</button></p>
                 </div>
             `;
         });
+    
+    // Recarregar a cada 5 minutos
+    setTimeout(loadBoosters, 5 * 60 * 1000);
 }
 
 function createBoosterCard(booster) {
     const card = document.createElement('div');
     card.className = 'booster-card';
-
+    
     const avatarUrl = booster.avatar || 'https://cdn.discordapp.com/embed/avatars/0.png';
     
     card.innerHTML = `
@@ -90,4 +95,11 @@ function createBoosterCard(booster) {
     `;
     
     return card;
+}
+
+// Função para debugging - tente acessar a URL diretamente
+function forceCreateBoostersFile() {
+    // Esta função não cria realmente o arquivo, apenas abre a URL
+    // para verificar se está acessível
+    window.open('https://raw.githubusercontent.com/wuwabr/wutheringwavesbrasil/main/data/boosters.json', '_blank');
 }
