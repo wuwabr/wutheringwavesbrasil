@@ -31,7 +31,7 @@
 
 
 
-    <style>
+     style>
         * {
             margin: 0;
             padding: 0;
@@ -117,6 +117,21 @@
             background-clip: text;
         }
 
+        @keyframes movingGradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+         .news-item:hover .news-title {
+            animation: movingGradient 3s linear infinite;
+        }
+
+        .news-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
         .news-description {
             font-size: 1.1rem;
             line-height: 1.6;
@@ -154,7 +169,151 @@
 
 
 
+ <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .main-content {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
+            padding: 60px 20px;
+        }
+
+
+        .news-section {
+            margin-bottom: 80px;
+        }
+
+        .news-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .news-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 300px; /* Reduzida para desktop */
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .news-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ff0000, #000000);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Animação do gradiente em movimento */
+        @keyframes movingGradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .news-item:hover .news-title {
+            animation: movingGradient 3s linear infinite;
+        }
+
+        .news-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px 15px;
+            }
+
+            .news-section h2,
+            .social-section h2 {
+                font-size: 2rem;
+            }
+
+            .news-title {
+                font-size: 1.5rem;
+            }
+
+            .news-image {
+                height: 250px; /* Altura ajustada para mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .news-image {
+                height: 200px; /* Ainda menor para telas muito pequenas */
+            }
+        }
+    </style>
 
 
         <main class="main-content">
@@ -167,6 +326,15 @@
                 <h3 class="news-title">ATUALIZAÇÃO DO CARGO BOOSTER</h3>
                 <p class="news-description">teste teste</p>
             </div>
+        </div>
+    <div class="overlay" id="overlay"></div>
+
+            <div class="news-section">
+            <a href="https://www.exemplo.com" class="news-item">
+                <img src="https://i.imgur.com/tlH8NRW.png" alt="Atualização do Cargo Booster" class="news-image">
+                <h3 class="news-title">ATUALIZAÇÃO DO CARGO BOOSTER</h3>
+                <p class="news-description">teste teste</p>
+            </a>
         </div>
     <div class="overlay" id="overlay"></div>
             
